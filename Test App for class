@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int clickCount = 0;
+  bool showImage = false;
+
+  void incrementClickCount() {
+    setState(() {
+      clickCount++;
+
+      if (clickCount == 5) {
+        showImage = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Class Schedule and Counter App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Class Schedule:',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text('MWF: 8-8:50 Cosc 315'),
+            Text('MWF: 9-9:50 Cosc 200'),
+            Text('MWF: 10-10:50 Cosc 340'),
+            Text('MWF: 1-1:50 Nsci 220'),
+            Text('TTH: 9:25-10:40 Cosc 355'),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                incrementClickCount();
+              },
+              child: Text('Click Me: $clickCount'),
+            ),
+            if (showImage)
+              Padding(
+                 padding: EdgeInsets.all(20),
+                child: Icon(
+                  Icons.star,
+                  size: 200,
+                  color: Colors.yellow, // Customize the color if needed
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
